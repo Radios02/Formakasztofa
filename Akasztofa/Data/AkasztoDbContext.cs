@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using Microsoft.EntityFrameworkCore;
 
 namespace Data
 {
-    internal class AkasztoDbContext
+    internal class AkasztoDbContext : DbContext
     {
+        public DbSet<Player> Players { get; set; }
+        public AkasztoDbContext()
+        { }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=FormAkasztofa;Trusted_Connection=True;MultipleActiveResultSets=true");
+        }
     }
 }
