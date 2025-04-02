@@ -1,7 +1,4 @@
-﻿using Microsoft.Maui.Controls;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Data;
 
 namespace Akasztofa
 {
@@ -39,7 +36,7 @@ namespace Akasztofa
                 {
                     Name = _playerName,  
                     SolutionTime = _game.MegoldasiIdo,
-                    difficulty = _game.Nehezseg == "Konnyu" ? Difficulty.easy : Difficulty.hard
+                    Difficulty = _game.Nehezseg == Difficulty.easy ? Difficulty.easy : Difficulty.hard
                 };
                 MentsdElJatekosAdat(jatekos);
 
