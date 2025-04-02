@@ -1,0 +1,6 @@
+<VerticalStackLayout>
+    <Label x:Name="CurrentWordLabel" FontSize="24" HorizontalOptions="Center" />
+    <Entry x:Name="LetterEntry" Placeholder="Tippelj egy betût" />
+    <Button Text="Tippelés" Clicked="OnGuessClicked" />
+    <Label x:Name="TimeLabel" FontSize="20" HorizontalOptions="Center" />
+</VerticalStackLayout>

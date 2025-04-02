@@ -1,0 +1,7 @@
+<VerticalStackLayout>
+    <Label Text="TOP 3 Leggyorsabb Játékosok (Konnyu)" FontSize="24" HorizontalOptions="Center" />
+    <ListView x:Name="TopEasyPlayersList" />
+
+    <Label Text="TOP 3 Leggyorsabb Játékosok (Nehez)" FontSize="24" HorizontalOptions="Center" />
+    <ListView x:Name="TopHardPlayersList" />
+</VerticalStackLayout>

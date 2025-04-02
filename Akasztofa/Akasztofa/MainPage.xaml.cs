@@ -1,25 +1,11 @@
-﻿namespace Akasztofa
+﻿using Microsoft.Maui.Controls;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using Windows.Gaming.Input;
+
+private void StartGameClicked(object sender, EventArgs e)
 {
-    public partial class MainPage : ContentPage
-    {
-        int count = 0;
+    var jatek = new Game(Configuration);
+    jatek.Kezdes(DifficultyPicker.SelectedItem.ToString());
 
-        public MainPage()
-        {
-            InitializeComponent();
-        }
-
-        private void OnCounterClicked(object sender, EventArgs e)
-        {
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
-        }
-    }
-
+    Navigation.PushAsync(new GamePage(jatek));
 }
