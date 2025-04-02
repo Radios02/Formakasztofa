@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data
 {
-    internal class AkasztoDbContext : DbContext
+    public class AkasztoDbContext : DbContext
     {
         public DbSet<Player> Players { get; set; }
         public AkasztoDbContext()

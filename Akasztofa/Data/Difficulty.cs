@@ -1,6 +1,6 @@
 ﻿namespace Data
 {
-    internal enum Difficulty
+    public enum Difficulty
     {
         easy,
         hard
