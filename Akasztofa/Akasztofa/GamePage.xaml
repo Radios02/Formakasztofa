@@ -1,6 +1,29 @@
-<VerticalStackLayout>
-    <Label x:Name="CurrentWordLabel" FontSize="24" HorizontalOptions="Center" />
-    <Entry x:Name="LetterEntry" Placeholder="Tippelj egy bet�t" />
-    <Button Text="Tippel�s" Clicked="OnGuessClicked" />
-    <Label x:Name="TimeLabel" FontSize="20" HorizontalOptions="Center" />
-</VerticalStackLayout>
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Akasztofa.GamePage"
+             Title="Akasztófa Játék">
+	<VerticalStackLayout Spacing="25" Padding="30">
+
+		<Label x:Name="CurrentWordLabel"
+               FontSize="24"
+               HorizontalOptions="Center" />
+
+
+		<Entry x:Name="LetterEntry"
+               Placeholder="Tippelj egy betűt"
+               FontSize="18"
+               HorizontalOptions="Center" />
+
+
+		<Button Text="Tippelés"
+                FontSize="18"
+                Clicked="OnGuessClicked"
+                HorizontalOptions="Center" />
+
+
+		<Label x:Name="TimeLabel"
+               FontSize="20"
+               HorizontalOptions="Center" />
+	</VerticalStackLayout>
+</ContentPage>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Data;
 using Microsoft.Extensions.Configuration;
 
 public class Game
@@ -12,7 +13,7 @@ public class Game
     private Stopwatch _stopwatch;
 
     public string Nev { get; set; }
-    public string Nehezseg { get; set; }
+    public Difficulty Nehezseg { get; set; }
     public TimeSpan MegoldasiIdo => _stopwatch.Elapsed;
 
     public Game(IConfiguration configuration)
@@ -21,11 +22,11 @@ public class Game
         _szavakNehez = configuration.GetSection("Szavak:Nehez").Get<List<string>>();
     }
 
-    public void Kezdes(string nehezseg)
+    public void Kezdes(Difficulty nehezseg) 
     {
         _stopwatch = Stopwatch.StartNew();
         Nehezseg = nehezseg;
-        _aktualisSzo = nehezseg == "Konnyu"
+        _aktualisSzo = nehezseg == Difficulty.easy
             ? _szavakKonnyu[new Random().Next(_szavakKonnyu.Count)]
             : _szavakNehez[new Random().Next(_szavakNehez.Count)];
         _jatekKimenete = new string('_', _aktualisSzo.Length);
@@ -54,4 +55,6 @@ public class Game
     {
         return !_jatekKimenete.Contains('_');
     }
+
+    public string Kimenet => _jatekKimenete;
 }

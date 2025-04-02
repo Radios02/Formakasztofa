@@ -1,7 +1,37 @@
-<VerticalStackLayout>
-    <Label Text="TOP 3 Leggyorsabb Játékosok (Konnyu)" FontSize="24" HorizontalOptions="Center" />
-    <ListView x:Name="TopEasyPlayersList" />
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Akasztofa.ReportPage"
+             Title="Riport">
+	<VerticalStackLayout Spacing="25" Padding="30">
 
-    <Label Text="TOP 3 Leggyorsabb Játékosok (Nehez)" FontSize="24" HorizontalOptions="Center" />
-    <ListView x:Name="TopHardPlayersList" />
-</VerticalStackLayout>
+		<Label Text="TOP 3 Leggyorsabb JÃ¡tÃ©kosok (Konnyu)"
+               FontSize="24"
+               HorizontalOptions="Center" />
+
+		<ListView x:Name="TopEasyPlayersList"
+                  ItemTemplate="{Binding .}">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<TextCell Text="{Binding Name}"
+                              Detail="{Binding SolutionTime}" />
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+
+
+		<Label Text="TOP 3 Leggyorsabb JÃ¡tÃ©kosok (Nehez)"
+               FontSize="24"
+               HorizontalOptions="Center" />
+
+		<ListView x:Name="TopHardPlayersList"
+                  ItemTemplate="{Binding .}">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<TextCell Text="{Binding Name}"
+                              Detail="{Binding SolutionTime}" />
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+	</VerticalStackLayout>
+</ContentPage>

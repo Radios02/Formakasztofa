@@ -1,11 +1,29 @@
-﻿<VerticalStackLayout Spacing="25" Padding="30">
-    <Label Text="Akasztófa" FontSize="32" HorizontalOptions="Center" />
-    <Entry x:Name="NameEntry" Placeholder="Írd be a neved" />
-    <Picker x:Name="DifficultyPicker">
-        <Picker.Items>
-            <PickerItem Text="Konnyu" />
-            <PickerItem Text="Nehez" />
-        </Picker.Items>
-    </Picker>
-    <Button Text="Kezd el a játékot" Clicked="StartGameClicked" />
-</VerticalStackLayout>
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Akasztofa.MainPage"
+             Title="Akasztófa Játék">
+    <VerticalStackLayout Spacing="25" Padding="30">
+
+        <Label Text="Akasztófa"
+               FontSize="32"
+               HorizontalOptions="Center" />
+
+        <Entry x:Name="NameEntry" 
+               Placeholder="Írd be a neved" 
+               FontSize="18"
+               HorizontalOptions="Center" />
+
+        <Picker x:Name="DifficultyPicker" 
+                Title="Válassz nehézséget"
+                FontSize="18"
+                SelectedIndexChanged="DifficultyPicker_SelectedIndexChanged">
+        </Picker>
+
+        <Button Text="Kezd el a játékot"
+                FontSize="18"
+                Clicked="StartGameClicked"
+                HorizontalOptions="Center" />
+    </VerticalStackLayout>
+</ContentPage>
+

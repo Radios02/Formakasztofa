@@ -1,48 +1,72 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using Microsoft.Maui.Controls;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
-public partial class GamePage : ContentPage
+namespace Akasztofa
 {
-    private Game _game;
-
-    public GamePage(Jatek game)
+    public partial class GamePage : ContentPage
     {
-        InitializeComponent();
-        _game = game;
-        UpdateUI();
-    }
+        private readonly Game _game;
+        private readonly string _playerName;
 
-    private void OnGuessClicked(object sender, EventArgs e)
-    {
-        string betu = LetterEntry.Text;
-        if (_game.Tippel(betu))
+        public GamePage(Game game, string playerName)
         {
+            InitializeComponent();
+            _game = game;
+            _playerName = playerName;
             UpdateUI();
         }
 
-        if (_game.JatekVege())
+        private void OnGuessClicked(object sender, EventArgs e)
         {
-            // Mentjük el az adatokat az adatbázisba
-            var jatekos = new Jatekos
+            string betu = LetterEntry.Text?.ToLower();
+
+            if (string.IsNullOrEmpty(betu))
             {
-                Nev = "Játékos Név", // Itt cseréld ki a név mezőre
-                MegoldasiIdo = _game.MegoldasiIdo,
-                Nehezseg = _game.Nehezseg
-            };
-            MentsdElJatekosAdat(jatekos);
-            DisplayAlert("Gratulálunk!", "Nyertél!", "OK");
+                DisplayAlert("Hiba", "Kérjük, adj meg egy betűt!", "OK");
+                return;
+            }
+
+            if (_game.Tippel(betu))
+            {
+                UpdateUI();
+            }
+
+            if (_game.JatekVege())
+            {
+                var jatekos = new Player
+                {
+                    Name = _playerName,  
+                    SolutionTime = _game.MegoldasiIdo,
+                    difficulty = _game.Nehezseg == "Konnyu" ? Difficulty.easy : Difficulty.hard
+                };
+                MentsdElJatekosAdat(jatekos);
+
+                DisplayAlert("Gratulálunk!", $"Nyertél! A játék ideje: {_game.MegoldasiIdo.TotalSeconds:F2} másodperc", "OK");
+
+                Navigation.PopToRootAsync();
+            }
         }
-    }
 
-    private void UpdateUI()
-    {
-        CurrentWordLabel.Text = _game.Kimenet;
-        TimeLabel.Text = $"Idő: {_game.MegoldasiIdo.TotalSeconds} másodperc";
-    }
 
-    private async Task MentsdElJatekosAdat(Jatekos jatekos)
-    {
-        using var dbContext = new GameDbContext();
-        dbContext.Jatekosok.Add(jatekos);
-        await dbContext.SaveChangesAsync();
+        private void UpdateUI()
+        {
+
+            CurrentWordLabel.Text = _game.Kimenet;
+
+
+            TimeLabel.Text = $"Idő: {_game.MegoldasiIdo.TotalSeconds:F2} másodperc";
+        }
+
+
+        private async Task MentsdElJatekosAdat(Player jatekos)
+        {
+            using (var dbContext = new AkasztoDbContext())
+            {
+                dbContext.Players.Add(jatekos);  
+                await dbContext.SaveChangesAsync();  
+            }
+        }
     }
 }
