@@ -1,17 +1,17 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Maui.Controls;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Data;
 
 namespace Akasztofa
 {
     public partial class MainPage : ContentPage
     {
-        public MainPage()
+        private readonly Game game;
+
+        public MainPage(Game game)
         {
             InitializeComponent();
+            this.game = game;
             LoadDifficultyOptions();
+            DifficultyPicker.ItemsSource = Enum.GetValues(typeof(Difficulty));
         }
 
 
@@ -46,9 +46,9 @@ namespace Akasztofa
             }
 
             string playerName = NameEntry.Text;
-            string selectedDifficulty = DifficultyPicker.SelectedItem.ToString();
+            var selectedDifficulty = (Difficulty)DifficultyPicker.SelectedItem;
 
-            var game = new Game(Configuration);
+
             game.Kezdes(selectedDifficulty);
 
             var gamePage = new GamePage(game, playerName);

@@ -18,8 +18,8 @@ public class Game
 
     public Game(IConfiguration configuration)
     {
-        _szavakKonnyu = configuration.GetSection("Szavak:Konnyu").Get<List<string>>();
-        _szavakNehez = configuration.GetSection("Szavak:Nehez").Get<List<string>>();
+        _szavakKonnyu = configuration.GetSection("easy").Get<List<string>>();
+        _szavakNehez = configuration.GetSection("Hard").Get<List<string>>();
     }
 
     public void Kezdes(Difficulty nehezseg) 

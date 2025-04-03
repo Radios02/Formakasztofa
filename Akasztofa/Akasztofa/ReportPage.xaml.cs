@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Data;
 
+namespace Akasztofa
+{
 public partial class ReportPage : ContentPage
 {
     public ReportPage()
@@ -28,4 +30,5 @@ public partial class ReportPage : ContentPage
         TopEasyPlayersList.ItemsSource = topEasyPlayers;
         TopHardPlayersList.ItemsSource = topHardPlayers;
     }
+}
 }

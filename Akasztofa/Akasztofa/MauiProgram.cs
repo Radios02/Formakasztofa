@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace Akasztofa
 {
@@ -17,7 +18,13 @@ namespace Akasztofa
 
 #if DEBUG
     		builder.Logging.AddDebug();
+
 #endif
+            builder.Configuration
+              .AddJsonFile("Appsettings.json");
+
+
+            builder.Services.AddSingleton<Game>();
 
             return builder.Build();
         }
